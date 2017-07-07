@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dianping.poi.bu.biz.mapper.db.dpcategory.PoiBuRuleMappingMapper">
+  <resultMap id="BaseResultMap" type="com.dianping.poi.bu.biz.model.PoiBuRuleMapping">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="rule_id" jdbcType="INTEGER" property="ruleId" />
+    <result column="bu_id" jdbcType="INTEGER" property="buId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="area_mapping_length" jdbcType="INTEGER" property="areaMappingLength" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, rule_id, bu_id, category_id, area_id, area_mapping_length, add_time, add_user, 
+    update_time, update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from POI_BURuleMapping
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from POI_BURuleMapping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleMapping">
+    insert into POI_BURuleMapping (id, rule_id, bu_id, 
+      category_id, area_id, area_mapping_length, 
+      add_time, add_user, update_time, 
+      update_user)
+    values (#{id,jdbcType=INTEGER}, #{ruleId,jdbcType=INTEGER}, #{buId,jdbcType=INTEGER}, 
+      #{categoryId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{areaMappingLength,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleMapping">
+    insert into POI_BURuleMapping
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="buId != null">
+        bu_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaMappingLength != null">
+        area_mapping_length,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addUser != null">
+        add_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="buId != null">
+        #{buId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaMappingLength != null">
+        #{areaMappingLength,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleMapping">
+    update POI_BURuleMapping
+    <set>
+      <if test="ruleId != null">
+        rule_id = #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="buId != null">
+        bu_id = #{buId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaMappingLength != null">
+        area_mapping_length = #{areaMappingLength,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleMapping">
+    update POI_BURuleMapping
+    set rule_id = #{ruleId,jdbcType=INTEGER},
+      bu_id = #{buId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      area_mapping_length = #{areaMappingLength,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user = #{addUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByRuleQuery" resultMap="BaseResultMap" parameterType="com.dianping.poi.bu.dto.MappingRuleQuery" >
+
+
+    select
+    <include refid="Base_Column_List" />
+    from POI_BURuleMapping
+    where 1 = 1
+    <if test="ruleId != null">
+      and rule_id = #{ruleId,jdbcType=INTEGER}
+    </if>
+    <if test="buId != null">
+      and bu_id = #{buId,jdbcType=INTEGER}
+    </if>
+    <if test="areaId != null">
+      and area_id = #{areaId,jdbcType=INTEGER}
+    </if>
+    <if test="areaMappingLength != null">
+      and area_mapping_length = #{areaMappingLength,jdbcType=INTEGER}
+    </if>
+    <if test="categoryId != null">
+      and category_id = #{categoryId,jdbcType=INTEGER}
+    </if>
+    order by id
+  </select>
+
+
+  <insert id="batchInsert" parameterType="List">
+    insert into POI_BURuleMapping (rule_id, bu_id,area_id, area_mapping_length,category_id,add_time,add_user,update_time,update_user)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.ruleId}, #{item.buId}, #{item.areaId}, #{item.areaMappingLength}, #{item.categoryId},
+      #{item.addTime}, #{item.addUser}, #{item.updateTime}, #{item.updateUser}
+      )
+    </foreach>
+  </insert>
+
+
+  <delete id="batchDeleteByRuleIds"  parameterType="List" >
+    delete
+    from POI_BURuleMapping
+    where rule_id in
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+  <select id="selectByRuleIds"  parameterType="List" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from POI_BURuleMapping
+    where rule_id in
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+
+  <select id="selectByRuleId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from POI_BURuleMapping
+    where rule_id = #{id}
+  </select>
+
+  <delete id="deleteByRuleId" parameterType="java.lang.Integer">
+    delete from POI_BURuleMapping
+    where rule_id = #{id}
+  </delete>
+
+
+
+
+
+
+  <select id="countRules" resultType="Integer">
+
+    select count(1) from POI_BURuleMapping
+
+  </select>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dianping.poi.bu.biz.mapper.db.dpcategory.PoiBuMappingMapper" >
+  <resultMap id="BaseResultMap" type="com.dianping.poi.bu.biz.model.PoiBuMapping" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="poi_id" property="poiId" jdbcType="INTEGER" />
+    <result column="bu_id" property="buId" jdbcType="INTEGER" />
+    <result column="rule_id" property="ruleId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user" property="addUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, poi_id, bu_id, rule_id, add_time, add_user, update_time, update_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from POI_BUMapping
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from POI_BUMapping
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dianping.poi.bu.biz.model.PoiBuMapping" >
+    insert into POI_BUMapping (id, poi_id, bu_id, 
+      rule_id, add_time, add_user, 
+      update_time, update_user)
+    values (#{id,jdbcType=INTEGER}, #{poiId,jdbcType=INTEGER}, #{buId,jdbcType=INTEGER}, 
+      #{ruleId,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dianping.poi.bu.biz.model.PoiBuMapping" >
+    insert into POI_BUMapping
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="poiId != null" >
+        poi_id,
+      </if>
+      <if test="buId != null" >
+        bu_id,
+      </if>
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUser != null" >
+        add_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="poiId != null" >
+        #{poiId,jdbcType=INTEGER},
+      </if>
+      <if test="buId != null" >
+        #{buId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dianping.poi.bu.biz.model.PoiBuMapping" >
+    update POI_BUMapping
+    <set >
+      <if test="poiId != null" >
+        poi_id = #{poiId,jdbcType=INTEGER},
+      </if>
+      <if test="buId != null" >
+        bu_id = #{buId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null" >
+        rule_id = #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dianping.poi.bu.biz.model.PoiBuMapping" >
+    update POI_BUMapping
+    set poi_id = #{poiId,jdbcType=INTEGER},
+      bu_id = #{buId,jdbcType=INTEGER},
+      rule_id = #{ruleId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user = #{addUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByMappingQuery" resultMap="BaseResultMap" parameterType="com.dianping.poi.bu.dto.PoiBuMappingQuery" >
+
+    select
+    <include refid="Base_Column_List" />
+    from POI_BUMapping
+    where 1 = 1
+    <if test="ruleId != null">
+      and rule_id = #{ruleId,jdbcType=INTEGER}
+    </if>
+    <if test="buId != null">
+      and bu_id = #{buId,jdbcType=INTEGER}
+    </if>
+    <if test="poiId != null" >
+      and poi_id = #{poiId,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <insert id="batchInsert" parameterType="List">
+    insert into POI_BUMapping (poi_id, bu_id,rule_id,add_time, add_user, update_time,update_user)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.poiId}, #{item.buId},#{item.ruleId},
+      #{item.addTime}, #{item.addUser}, #{item.updateTime}, #{item.updateUser}
+      )
+    </foreach>
+  </insert>
+
+
+  <select id="batchSelectByPoiIds" resultMap="BaseResultMap" parameterType="List" >
+    select
+    <include refid="Base_Column_List" />
+    from POI_BUMapping
+    where poi_id in
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+
+  <insert id="batchDeleteByPoiIds" parameterType="List">
+    delete from POI_BUMapping
+    where poi_id in
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </insert>
+
+
+
+
+  <select id="getMaxPoiId" resultType="Integer">
+
+    select max(poi_id) from POI_BUMapping
+
+  </select>
+
+
+
+
+</mapper>

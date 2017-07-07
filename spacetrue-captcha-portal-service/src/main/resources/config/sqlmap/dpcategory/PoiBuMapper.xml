@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dianping.poi.bu.biz.mapper.db.dpcategory.PoiBuMapper">
+  <resultMap id="BaseResultMap" type="com.dianping.poi.bu.biz.model.PoiBu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="bu_name" jdbcType="VARCHAR" property="buName" />
+    <result column="bg_id" jdbcType="INTEGER" property="bgId" />
+    <result column="bu_id" jdbcType="INTEGER" property="buId" />
+    <result column="is_active" jdbcType="INTEGER" property="isActive" />
+    <result column="is_shared" jdbcType="INTEGER" property="isShared" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_user" jdbcType="VARCHAR" property="addUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bu_name, bg_id, bu_id,is_active,is_shared, add_time, add_user, update_time, update_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from POI_BU
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from POI_BU
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dianping.poi.bu.biz.model.PoiBu">
+    insert into POI_BU (id, bu_name, bg_id, bu_id,is_active, is_shared
+      add_time, add_user, update_time, 
+      update_user)
+    values (#{id,jdbcType=INTEGER}, #{buName,jdbcType=VARCHAR}, #{bgId,jdbcType=INTEGER}, #{buId,jdbcType=INTEGER},#{isActive,jdbcType=INTEGER}, #{isShared,jdbcType=INTEGER},
+      #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dianping.poi.bu.biz.model.PoiBu">
+    insert into POI_BU
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="buName != null">
+        bu_name,
+      </if>
+      <if test="bgId != null">
+        bg_id,
+      </if>
+      <if test="buId != null">
+        bu_id,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="isShared != null">
+        is_shared,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addUser != null">
+        add_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="buName != null">
+        #{buName,jdbcType=VARCHAR},
+      </if>
+      <if test="bgId != null">
+        #{bgId,jdbcType=INTEGER},
+      </if>
+      <if test="buId != null">
+        #{buId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="isShared != null">
+        #{isShared,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dianping.poi.bu.biz.model.PoiBu">
+    update POI_BU
+    <set>
+      <if test="buName != null">
+        bu_name = #{buName,jdbcType=VARCHAR},
+      </if>
+      <if test="bgId != null">
+        bg_id = #{bgId,jdbcType=INTEGER},
+      </if>
+      <if test="buId != null">
+        bu_id = #{buId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        is_active ＝ #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="isShared != null">
+        is_shared ＝ #{isShared,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dianping.poi.bu.biz.model.PoiBu">
+    update POI_BU
+    set bu_name = #{buName,jdbcType=VARCHAR},
+      bg_id = #{bgName,jdbcType=INTEGER},
+      bu_id = #{buName,jdbcType=INTEGER},
+      is_active ＝ #{isActive,jdbcType=INTEGER},
+      is_shared ＝ #{isShared,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user = #{addUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <insert id="batchInsert" parameterType="List">
+    insert into POI_BU (bu_name,bg_id, bu_id,is_active,is_shared,add_time, add_user, update_time,update_user)
+    values
+    <foreach collection="list" index="index" item="item" separator=",">
+      (#{item.buName}, #{item.bgId}, #{item.buId}, #{item.isActive},#{item.isShared},
+      #{item.addTime}, #{item.addUser}, #{item.updateTime}, #{item.updateUser}
+      )
+    </foreach>
+  </insert>
+
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from POI_BU
+  </select>
+
+
+  <delete id="batchDeleteByBuId"  parameterType="List" >
+    delete
+    from POI_BU
+    where bu_id in
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+
+  <select id="selectActiveBu" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from POI_BU
+    where is_active=1
+  </select>
+
+
+  <update id="updateByBuIdSelective" parameterType="com.dianping.poi.bu.biz.model.PoiBu">
+    update POI_BU
+    <set>
+      <if test="buName != null">
+        bu_name = #{buName,jdbcType=VARCHAR},
+      </if>
+      <if test="bgId != null">
+        bg_id = #{bgId,jdbcType=INTEGER},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="isShared != null">
+        is_shared = #{isShared,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null">
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bu_id = #{buId,jdbcType=INTEGER}
+  </update>
+
+
+  <update id="batchUpdateByBuIdsSelective" >
+    update POI_BU
+    <set>
+      <if test="poiBu.buName != null">
+        bu_name = #{poiBu.buName,jdbcType=VARCHAR},
+      </if>
+      <if test="poiBu.bgId != null">
+        bg_id = #{poiBu.bgId,jdbcType=INTEGER},
+      </if>
+      <if test="poiBu.isActive != null">
+        is_active = #{poiBu.isActive,jdbcType=INTEGER},
+      </if>
+      <if test="poiBu.isShared != null">
+        is_shared = #{poiBu.isShared,jdbcType=INTEGER},
+      </if>
+      <if test="poiBu.addTime != null">
+        add_time = #{poiBu.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="poiBu.addUser != null">
+        add_user = #{poiBu.addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="poiBu.updateTime != null">
+        update_time = #{poiBu.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="poiBu.updateUser != null">
+        update_user = #{poiBu.updateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bu_id IN
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+    #{item}
+    </foreach>
+  </update>
+
+  <select id="selectByBuId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from POI_BU
+    where bu_id = #{buId,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

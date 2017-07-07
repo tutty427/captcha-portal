@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dianping.poi.bu.biz.mapper.db.dpcategory.PoiBuRuleLogMapper" >
+  <resultMap id="BaseResultMap" type="com.dianping.poi.bu.biz.model.PoiBuRuleLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content_type" property="contentType" jdbcType="INTEGER" />
+    <result column="is_effective" property="isEffective" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="add_user" property="addUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.dianping.poi.bu.biz.model.PoiBuRuleLog" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content_type, is_effective, add_time, add_user, update_time, update_user
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <sql id="Base_Column_List_with_blob" >
+    id, content_type, is_effective, add_time, add_user, update_time, update_user,content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from POI_BURuleLog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from POI_BURuleLog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleLog" >
+    insert into POI_BURuleLog (id, content_type, is_effective,
+      add_time, add_user, update_time, 
+      update_user, content)
+    values (#{id,jdbcType=INTEGER}, #{contentType,jdbcType=INTEGER}, #{isEffective,jdbcType=INTEGER},
+      #{addTime,jdbcType=TIMESTAMP}, #{addUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleLog" >
+    insert into POI_BURuleLog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="contentType != null" >
+        content_type,
+      </if>
+      <if test="isEffective != null" >
+        is_effective,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="addUser != null" >
+        add_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="isEffective != null" >
+        #{isEffective,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleLog" >
+    update POI_BURuleLog
+    <set >
+      <if test="contentType != null" >
+        content_type = #{contentType,jdbcType=INTEGER},
+      </if>
+      <if test="isEffective != null" >
+        is_effective = #{isEffective,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addUser != null" >
+        add_user = #{addUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleLog" >
+    update POI_BURuleLog
+    set content_type = #{contentType,jdbcType=INTEGER},
+      is_effective = #{isEffective,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user = #{addUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dianping.poi.bu.biz.model.PoiBuRuleLog" >
+    update POI_BURuleLog
+    set content_type = #{contentType,jdbcType=INTEGER},
+      is_effective = #{isEffective,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_user = #{addUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="selectByLogQuery" resultMap="ResultMapWithBLOBs" parameterType="com.dianping.poi.bu.dto.PoiBuRuleLogQuery" >
+
+    select
+    <include refid="Base_Column_List_with_blob" />
+    from POI_BURuleLog
+    where 1 = 1
+    <if test="id != null">
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="contentType != null">
+      and content_type = #{contentType,jdbcType=INTEGER}
+    </if>
+    <if test="poiId != null" >
+      and is_effective = #{isEffective,jdbcType=INTEGER}
+    </if>
+  </select>
+
+
+
+  <select id="selectByLogQueryForEffective" resultMap="ResultMapWithBLOBs" parameterType="com.dianping.poi.bu.dto.PoiBuRuleLogQuery" >
+      select
+      <include refid="Base_Column_List_with_blob" />
+      from POI_BURuleLog
+      where 1 = 1
+      <if test="contentType != null">
+        and content_type = #{contentType,jdbcType=INTEGER}
+      </if>
+      <if test="isEffective != null" >
+        and is_effective = #{isEffective,jdbcType=INTEGER}
+      </if>
+      <if test="addTime != null" >
+       <![CDATA[
+         and add_time < #{addTime,jdbcType=TIMESTAMP}
+        ]]>
+      </if>
+
+  </select>
+
+
+
+  <delete id="batchDeleteByPrimaryKeys"  parameterType="List" >
+    delete
+    from POI_BURuleLog
+    where id in
+    <foreach item="item" index="index" collection="ids"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+</mapper>
