@@ -6,15 +6,15 @@
               class="org.apache.log4j.ConsoleAppender">
         <param name="Target" value="System.out"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[poi-bu-biz]%d %-5p [%c] %m%n"/>
+            <param name="ConversionPattern" value="[captcha-portal-biz]%d %-5p [%c] %m%n"/>
         </layout>
     </appender>
 
     <appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
         <!-- <param name="Threshold" value="INFO" /> -->
-        <param name="File" value="/data/applogs/poi-bu-biz/app.log"/>
+        <param name="File" value="/data/applogs/captcha-portal-biz/app.log"/>
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="[poi-bu-biz]%d %-5p  [%c %L] %m%n"/>
+            <param name="ConversionPattern" value="[captcha-portal-biz]%d %-5p  [%c %L] %m%n"/>
         </layout>
     </appender>
 
@@ -58,20 +58,17 @@
     </logger>
 
 
-    <logger name="com.dianping" additivity="false">
+    <logger name="com.spacetrue" additivity="false">
         <level value="DEBUG"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="fileAppender" />
-        <appender-ref ref="catAppender" />
     </logger>
 
-    <appender name="catAppender" class="com.dianping.cat.log4j.CatAppender"></appender>
-    
+
     <root>
         <level value="DEBUG"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="fileAppender" />
-        <appender-ref ref="catAppender" />
     </root>
 
 </log4j:configuration>
