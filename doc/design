@@ -4,40 +4,52 @@ id
 user_id
 user_account
 user_password
+access_id
 created_at
 update_at
 last_login_at
 
-payment
+order_record
 -----------
 id
-payment_id
 item_id
-item_price
-payment_way
-payment_user_id
-payment_time
+user_id
+order_price
+pay_way
+order_time
 created_at
 update_at
 
+待定
+//payment
+---------------
 
 item
 ---------------
 id
 item_name
-item_descibe
+item_describe
 item_price
 item_discount
-item_limit
+time_limit
+stream_limit
 item_available_payway
 created_at
 update_at
 
-item_used_recod
+item_delivery
 ------------------
-payment_id
+id
+order_id
 item_id
 user_id
+active_time
+end_time
+init_used_count
+total_used_count
+current_used_count
+created_at
+update_at
 
 
 

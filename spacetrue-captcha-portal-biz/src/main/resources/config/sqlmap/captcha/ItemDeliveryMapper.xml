@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spacetrue.tech.captcha.biz.mapper.db.captcha.ItemDeliveryMapper">
+  <resultMap id="BaseResultMap" type="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="active_time" jdbcType="TIMESTAMP" property="activeTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="total_used_count" jdbcType="BIGINT" property="totalUsedCount" />
+    <result column="current_used_count" jdbcType="BIGINT" property="currentUsedCount" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, item_id, user_id, active_time, end_time, total_used_count, current_used_count, 
+    created_at, update_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item_delivery
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from item_delivery
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    insert into item_delivery (id, order_id, item_id, 
+      user_id, active_time, end_time, 
+      total_used_count, current_used_count, created_at, 
+      update_at)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{itemId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=VARCHAR}, #{activeTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{totalUsedCount,jdbcType=BIGINT}, #{currentUsedCount,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    insert into item_delivery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="activeTime != null">
+        active_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="totalUsedCount != null">
+        total_used_count,
+      </if>
+      <if test="currentUsedCount != null">
+        current_used_count,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null">
+        #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalUsedCount != null">
+        #{totalUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="currentUsedCount != null">
+        #{currentUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    update item_delivery
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null">
+        active_time = #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalUsedCount != null">
+        total_used_count = #{totalUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="currentUsedCount != null">
+        current_used_count = #{currentUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    update item_delivery
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      active_time = #{activeTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_used_count = #{totalUsedCount,jdbcType=BIGINT},
+      current_used_count = #{currentUsedCount,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="active_time" jdbcType="TIMESTAMP" property="activeTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="total_used_count" jdbcType="BIGINT" property="totalUsedCount" />
+    <result column="current_used_count" jdbcType="BIGINT" property="currentUsedCount" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, item_id, user_id, active_time, end_time, total_used_count, current_used_count, 
+    created_at, update_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item_delivery
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from item_delivery
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    insert into item_delivery (id, order_id, item_id, 
+      user_id, active_time, end_time, 
+      total_used_count, current_used_count, created_at, 
+      update_at)
+    values (#{id,jdbcType=BIGINT}, #{orderId,jdbcType=VARCHAR}, #{itemId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=VARCHAR}, #{activeTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{totalUsedCount,jdbcType=BIGINT}, #{currentUsedCount,jdbcType=BIGINT}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updateAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    insert into item_delivery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="activeTime != null">
+        active_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="totalUsedCount != null">
+        total_used_count,
+      </if>
+      <if test="currentUsedCount != null">
+        current_used_count,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null">
+        #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalUsedCount != null">
+        #{totalUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="currentUsedCount != null">
+        #{currentUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    update item_delivery
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null">
+        item_id = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="activeTime != null">
+        active_time = #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalUsedCount != null">
+        total_used_count = #{totalUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="currentUsedCount != null">
+        current_used_count = #{currentUsedCount,jdbcType=BIGINT},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spacetrue.tech.captcha.biz.model.ItemDelivery">
+    update item_delivery
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
+      active_time = #{activeTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_used_count = #{totalUsedCount,jdbcType=BIGINT},
+      current_used_count = #{currentUsedCount,jdbcType=BIGINT},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

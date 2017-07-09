@@ -48,8 +48,20 @@
     </logger>
 
 
+    <logger name="org.apache" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+
+    <logger name="org.springframework" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+
     <root>
-        <level value="INFO"/>
+        <level value="debug"/>
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="fileAppender" />
     </root>

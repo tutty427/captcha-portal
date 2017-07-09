@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spacetrue.tech.captcha.biz.mapper.db.captcha.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.spacetrue.tech.captcha.biz.model.Item">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_describe" jdbcType="VARCHAR" property="itemDescribe" />
+    <result column="item_discount" jdbcType="INTEGER" property="itemDiscount" />
+    <result column="time_limit" jdbcType="BIGINT" property="timeLimit" />
+    <result column="stream_limit" jdbcType="BIGINT" property="streamLimit" />
+    <result column="item_available_payway" jdbcType="VARCHAR" property="itemAvailablePayway" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_name, item_describe, item_discount, time_limit, stream_limit, item_available_payway, 
+    created_at, update_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    insert into item (id, item_name, item_describe, 
+      item_discount, time_limit, stream_limit, 
+      item_available_payway, created_at, update_at
+      )
+    values (#{id,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}, #{itemDescribe,jdbcType=VARCHAR}, 
+      #{itemDiscount,jdbcType=INTEGER}, #{timeLimit,jdbcType=BIGINT}, #{streamLimit,jdbcType=BIGINT}, 
+      #{itemAvailablePayway,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemDescribe != null">
+        item_describe,
+      </if>
+      <if test="itemDiscount != null">
+        item_discount,
+      </if>
+      <if test="timeLimit != null">
+        time_limit,
+      </if>
+      <if test="streamLimit != null">
+        stream_limit,
+      </if>
+      <if test="itemAvailablePayway != null">
+        item_available_payway,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDescribe != null">
+        #{itemDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDiscount != null">
+        #{itemDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="timeLimit != null">
+        #{timeLimit,jdbcType=BIGINT},
+      </if>
+      <if test="streamLimit != null">
+        #{streamLimit,jdbcType=BIGINT},
+      </if>
+      <if test="itemAvailablePayway != null">
+        #{itemAvailablePayway,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    update item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDescribe != null">
+        item_describe = #{itemDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDiscount != null">
+        item_discount = #{itemDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="timeLimit != null">
+        time_limit = #{timeLimit,jdbcType=BIGINT},
+      </if>
+      <if test="streamLimit != null">
+        stream_limit = #{streamLimit,jdbcType=BIGINT},
+      </if>
+      <if test="itemAvailablePayway != null">
+        item_available_payway = #{itemAvailablePayway,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    update item
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      item_describe = #{itemDescribe,jdbcType=VARCHAR},
+      item_discount = #{itemDiscount,jdbcType=INTEGER},
+      time_limit = #{timeLimit,jdbcType=BIGINT},
+      stream_limit = #{streamLimit,jdbcType=BIGINT},
+      item_available_payway = #{itemAvailablePayway,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.spacetrue.tech.captcha.biz.model.Item">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_describe" jdbcType="VARCHAR" property="itemDescribe" />
+    <result column="item_discount" jdbcType="INTEGER" property="itemDiscount" />
+    <result column="time_limit" jdbcType="BIGINT" property="timeLimit" />
+    <result column="stream_limit" jdbcType="BIGINT" property="streamLimit" />
+    <result column="item_available_payway" jdbcType="VARCHAR" property="itemAvailablePayway" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_name, item_describe, item_discount, time_limit, stream_limit, item_available_payway, 
+    created_at, update_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    insert into item (id, item_name, item_describe, 
+      item_discount, time_limit, stream_limit, 
+      item_available_payway, created_at, update_at
+      )
+    values (#{id,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}, #{itemDescribe,jdbcType=VARCHAR}, 
+      #{itemDiscount,jdbcType=INTEGER}, #{timeLimit,jdbcType=BIGINT}, #{streamLimit,jdbcType=BIGINT}, 
+      #{itemAvailablePayway,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemDescribe != null">
+        item_describe,
+      </if>
+      <if test="itemDiscount != null">
+        item_discount,
+      </if>
+      <if test="timeLimit != null">
+        time_limit,
+      </if>
+      <if test="streamLimit != null">
+        stream_limit,
+      </if>
+      <if test="itemAvailablePayway != null">
+        item_available_payway,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updateAt != null">
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDescribe != null">
+        #{itemDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDiscount != null">
+        #{itemDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="timeLimit != null">
+        #{timeLimit,jdbcType=BIGINT},
+      </if>
+      <if test="streamLimit != null">
+        #{streamLimit,jdbcType=BIGINT},
+      </if>
+      <if test="itemAvailablePayway != null">
+        #{itemAvailablePayway,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    update item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDescribe != null">
+        item_describe = #{itemDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDiscount != null">
+        item_discount = #{itemDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="timeLimit != null">
+        time_limit = #{timeLimit,jdbcType=BIGINT},
+      </if>
+      <if test="streamLimit != null">
+        stream_limit = #{streamLimit,jdbcType=BIGINT},
+      </if>
+      <if test="itemAvailablePayway != null">
+        item_available_payway = #{itemAvailablePayway,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null">
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spacetrue.tech.captcha.biz.model.Item">
+    update item
+    set item_name = #{itemName,jdbcType=VARCHAR},
+      item_describe = #{itemDescribe,jdbcType=VARCHAR},
+      item_discount = #{itemDiscount,jdbcType=INTEGER},
+      time_limit = #{timeLimit,jdbcType=BIGINT},
+      stream_limit = #{streamLimit,jdbcType=BIGINT},
+      item_available_payway = #{itemAvailablePayway,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
