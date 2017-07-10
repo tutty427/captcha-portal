@@ -49,8 +49,6 @@ public class UserController {
     @RequestMapping(value="/toLogin")
     public String login(ModelMap model,HttpServletRequest request, HttpSession session){
         model.addAttribute(Constants.PAGE_TITLE, "login");
-
-
         return LayoutNames.loginPage.name();
     }
 

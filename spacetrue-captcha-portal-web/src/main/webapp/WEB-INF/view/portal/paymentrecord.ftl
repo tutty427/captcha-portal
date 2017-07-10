@@ -1,8 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>充值续费</title>
-    <link href="/css/user_center_style.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/layer.css" id="layui_layer_skinlayercss" style=""></head>
+
 <body>
 <div class="container">
     <div class="header">
@@ -59,55 +55,6 @@
     </div>
     <div class="clear"></div>
 </div>
-<script src="/js/jquery-1.10.2.min.js"></script>
-<script src="/js//layer.min.js"></script>
-<script type="text/javascript" src="js/top.js"></script>
 
-<script type="text/javascript">
-    function showImg() {
-        document.getElementById("tuichu").style.display = 'block';
-    }
-    function hideImg() {
-        document.getElementById("tuichu").style.display = 'none';
-    }
-</script>
-<script type="text/javascript">
-    $(function () {
-        $.post("http://green.jxbdzz.com/ucenter/price.html",{},function (data) {
-            if (data != '' &amp;&amp; data != null) {
-                data = JSON.parse(data);
-                var settings = data.settings;
-                for (var i = 0; i &lt; settings.length; i++) {
-                    ///给支付宝和微信按钮的attrid赋值；
-                    $("#paypack" + i).attr("attrid", settings[i].packpayid);
-                    $("#paypackwx" + i).attr("attrid", settings[i].packpayid);
-                    $("#pricepack" + i).text(settings[i].packmoney);
-                }
-            }
-        });
-        var fixPayUrl = function (pid,type) {
-//            $.ajaxSetup({async : false });
-            $.post("http://green.jxbdzz.com/checkLogin.html",{},function (data) {
-                if (data != "" &amp;&amp; data != null) {
-                    window.location.href ="http://green.jxbdzz.com/ucenter/recharge.html?packid=" + pid + "&amp;type="+type;
-                } else {
-                    window.location.reload(true);
-                }
-            });
-        };
-        $("[name='paybutton']").click(function () {
-            var pid = $(this).attr("attrid");
-            fixPayUrl(pid,1);
-        });
-        $("[name='paybuttonwx']").click(function () {
-            var pid = $(this).attr("attrid");
-            fixPayUrl(pid,2);
-        });
-    });
-
-</script>
-<script type="text/javascript">
-
-</script>
 
 </body></html>

@@ -149,7 +149,7 @@ img { max-width: 100%; }
 }
 
 .form-bottom form .input-error {
-	border-color: #4aaf51;
+	border-color: red;
 }
 
 .social-login {
@@ -194,6 +194,12 @@ img { max-width: 100%; }
 	-moz-opacity:0.5;
 	-khtml-opacity: 0.5;
 	opacity: 0.5;
-	z-index:-1;
+	left: 0px;
+	top: 0px;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+	z-index: -999999;
+	position: fixed;
 }
 

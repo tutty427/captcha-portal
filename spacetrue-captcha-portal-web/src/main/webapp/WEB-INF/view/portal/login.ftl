@@ -20,7 +20,7 @@
 </head>
 
 <body>
-<video class="bg-vido" autoplay="" loop="" style="background-image:url(>)"><source src="/images/bg.mp4" type="video/mp4"></video>
+<video class="bg-vido" autoplay="" loop="loop" style="background-image:url(>)"><source src="/images/bg.mp4" type="video/mp4"></video>
 <!-- Top content -->
 <div class="top-content" >
     <div class="inner-bg" >
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" action="/captcha/toCenter" method="post" class="login-form">
+                        <form role="form" action="/captcha/user/toCenter" method="post" class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
                                 <input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">

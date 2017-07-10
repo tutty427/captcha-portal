@@ -15,11 +15,16 @@
 		<put-attribute name="body" expression="/WEB-INF/view/portal/${pageName}.ftl" type="freemarker" />
 	</definition>
 
-	<definition name="userCenterPage" template="/WEB-INF/view/portal/userManageCenter.ftl" templateType="freemarker">
-		<put-attribute name="title" expression="${pageTitle}" />
+	<definition name="loginPage" template="/WEB-INF/view/portal/login.ftl" templateType="freemarker">
 	</definition>
 
-	<definition name="loginPage" template="/WEB-INF/view/portal/login.ftl" templateType="freemarker">
+
+	<definition name="userCenter" template="/WEB-INF/view/portal/renew.ftl" templateType="freemarker">
+		<put-attribute name="leftslide" value="/WEB-INF/view/portal/leftside.ftl" type="freemarker" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="userCenterPage" extends="userCenter">
+		<put-attribute name="body" expression="/WEB-INF/view/portal/${pageName}.ftl" type="freemarker" />
 	</definition>
 
 
