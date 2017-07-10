@@ -55,7 +55,7 @@
    <bean id="captchaScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.spacetrue.tech.captcha.biz.mapper.db.captcha" />
 		<!-- <property name="sqlSessionFactoryBeanName" value="DBPOIsqlSessionFactory"/> -->
-		<property name="sqlSessionTemplateBeanName" value="dpCategorySqlSession"/>
+		<property name="sqlSessionTemplateBeanName" value="captchaSqlSession"/>
    </bean>
 
 	 <!-- 开启事务注解驱动 -->

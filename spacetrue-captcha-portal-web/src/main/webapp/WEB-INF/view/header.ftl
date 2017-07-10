@@ -28,10 +28,10 @@
                 <#--</li>-->
                 <#--<li><a href="elements.html">Elements</a></li>-->
                 <li><a href="#">Contact</a></li>
-                <#if loginStatus==1>
-                <li><a href="#">Sign Up</a></li>
+                <#if Session.UserName ? exists >
+                    <li><a href="#">${Session.UserName}</a></li>
                 <#else>
-                    <li><a href="#">Log Out</a></li>
+                    <li><a href="/captcha/toLogin">Sign In</a></li>
                 </#if>
             </ul>
         </nav>
