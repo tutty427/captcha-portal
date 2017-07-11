@@ -20,6 +20,9 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**" />
+			<mvc:mapping path="/renew/**" />
+			<mvc:mapping path="/usagelog/**" />
+			<mvc:mapping path="/payment/**" />
 			<mvc:exclude-mapping path="/api/**" />
 			<bean class="com.spacetrue.tech.captcha.web.interceptor.SiteAuthInterceptor" />
 		</mvc:interceptor>

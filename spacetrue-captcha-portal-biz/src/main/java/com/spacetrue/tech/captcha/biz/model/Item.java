@@ -11,6 +11,8 @@ public class Item {
 
     private Integer itemDiscount;
 
+    private Long itemPrice;
+
     private Long timeLimit;
 
     private Long streamLimit;
@@ -91,5 +93,13 @@ public class Item {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public Long getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(Long itemPrice) {
+        this.itemPrice = itemPrice;
     }
 }

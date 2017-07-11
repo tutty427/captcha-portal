@@ -24,4 +24,11 @@ public class CommonApi {
         return userService.getRandomAccount(account);
     }
 
+
+    @RequestMapping(value = "/api/alipayCallBack", consumes = "application/json;charset=UTF-8",produces="application/json;charset=UTF-8")
+    public String alipayCallBack(String s ){
+
+        return null;
+    }
+
 }

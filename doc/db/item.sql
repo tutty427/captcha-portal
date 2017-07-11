@@ -3,6 +3,7 @@ CREATE TABLE `captcha_portal`.`item` (
   `item_name` VARCHAR(45) NOT NULL,
   `item_describe` VARCHAR(300) NULL,
   `item_discount` INT NULL,
+  `item_price` BIGINT NOT NULL DEFAULT -1,
   `time_limit` BIGINT NOT NULL DEFAULT -1,
   `stream_limit` BIGINT NOT NULL DEFAULT -1,
   `item_available_payway` VARCHAR(45) NULL,
