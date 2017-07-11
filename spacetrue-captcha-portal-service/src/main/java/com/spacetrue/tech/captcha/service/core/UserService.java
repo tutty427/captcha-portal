@@ -7,13 +7,15 @@ import com.spacetrue.tech.captcha.service.entity.UserDTO;
  */
 public interface UserService {
 
-     boolean register(String userAccount,String pwd);
+    UserDTO register(String userAccount,String pwd);
 
     UserDTO login(String userAccount,String pwd);
 
-     boolean changePwd(Integer id,String newPwd);
+    boolean changePwd(Integer id,String newPwd);
 
-     UserDTO loadUserProfilebyUserId(String userId);
+    UserDTO loadUserProfilebyUserId(String userId);
 
     UserDTO loadUserProfilebyUserAccount(String userAccount);
+
+    UserDTO getRandomAccount(String account);
 }

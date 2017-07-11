@@ -29,7 +29,7 @@
                 <#--<li><a href="elements.html">Elements</a></li>-->
                 <li><a href="#">Contact</a></li>
                 <#if Session.UserName ? exists >
-                    <li><a href="#">${Session.UserName}</a></li>
+                    <li><a href="#"></a></li>
                 <#else>
                     <li><a href="/captcha/toLogin">Sign In</a></li>
                 </#if>

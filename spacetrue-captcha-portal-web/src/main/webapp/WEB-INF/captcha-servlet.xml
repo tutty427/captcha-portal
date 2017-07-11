@@ -17,14 +17,13 @@
 
 
 	<mvc:annotation-driven />
-	<!--<mvc:interceptors>-->
-		<!--<mvc:interceptor>-->
-			<!--<mvc:mapping path="/poi/shop/**" />-->
-			<!--<mvc:exclude-mapping path="/poi/shop/toAdd" />-->
-			<!--<mvc:exclude-mapping path="/poi/shop/feedType" />-->
-			<!--<bean class="com.dianping.poi.toolkit.web.interceptor.ApolloAuthInterceptor" />-->
-		<!--</mvc:interceptor>-->
-	<!--</mvc:interceptors>-->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/**" />
+			<mvc:exclude-mapping path="/api/**" />
+			<bean class="com.spacetrue.tech.captcha.web.interceptor.SiteAuthInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 	<bean id="tilesConfigurer"
 		  class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">

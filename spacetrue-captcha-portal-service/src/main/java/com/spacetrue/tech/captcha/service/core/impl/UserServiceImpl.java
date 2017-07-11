@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by Shaw on 2017/7/9.
@@ -26,17 +27,18 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public boolean register(String userAccount, String pwd) {
+    public UserDTO register(String userAccount, String pwd) {
+        UserDTO dto = null;
         User user = userMapper.selectByUserAccount(userAccount);
         if(user != null){
             LOG.warn("Duplicate acount ==> "+ userAccount);
-            return false;
+            return dto;
         }
 
         user = new User();
         user.setUserAccount(userAccount);
-        user.setUserPassword(SecurityUtils.sha256(pwd));
-
+        user.setUserPassword(SecurityUtils.base64enc(SecurityUtils.sha256(pwd)));
+        user.setUserId(UUID.randomUUID().toString().replaceAll("-",""));
         Date now = new Date();
         user.setCreatedAt(now);
         user.setUpdateAt(now);
@@ -45,11 +47,13 @@ public class UserServiceImpl implements UserService {
         String accessId = SecurityUtils.generateAccessId(userAccount,now.getTime());
         if(Strings.isNullOrEmpty(accessId)){
             LOG.warn("Fail to generate accessId");
-            return false;
+            return dto;
         }
         user.setAccessId(accessId);
         userMapper.insert(user);
-        return true;
+        dto = new UserDTO();
+        BeanUtils.copyProperties(user,dto);
+        return dto;
     }
 
     @Override
@@ -57,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
         UserDTO dto = null;
         User user = userMapper.selectByUserAccount(userAccount);
-        if(user != null && user.getUserPassword().equalsIgnoreCase(SecurityUtils.sha256(pwd))){
+        if(user != null && user.getUserPassword().equalsIgnoreCase(SecurityUtils.base64enc(SecurityUtils.sha256(pwd)))){
             dto = new UserDTO();
             BeanUtils.copyProperties(user,dto);
 
@@ -65,7 +69,7 @@ public class UserServiceImpl implements UserService {
             User userForUpdate = new User();
             userForUpdate.setId(user.getId());
             userForUpdate.setLastLoginAt(new Date());
-            userMapper.updateByPrimaryKey(userForUpdate);
+            userMapper.updateByPrimaryKeySelective(userForUpdate);
             return dto;
         }
         LOG.warn("Account/Pwd can't be matched");
@@ -103,4 +107,20 @@ public class UserServiceImpl implements UserService {
         }
         return dto;
     }
+
+    @Override
+    public UserDTO getRandomAccount(String account) {
+
+        long now = System.currentTimeMillis();
+        if(account == null){
+            account = SecurityUtils.base64enc(SecurityUtils.sha256(String.valueOf(now)));
+        }
+
+        String pwd = "qazqweqsc123";
+        UserDTO dto = register(account,pwd);
+        dto.setUserPassword(pwd);
+        return dto;
+    }
+
+
 }

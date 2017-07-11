@@ -1,7 +1,9 @@
 package com.spacetrue.tech.captcha.service.util;
 
-import com.google.common.base.Strings;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+
+import com.google.common.base.Strings;
 
 /**
  * Created by Shaw on 2017/7/9.
@@ -19,7 +21,7 @@ public class SecurityUtils {
         }
 
         String source = new StringBuilder(SECURITY_PREFIX).append(account).append(createDate).append(SECURITY_SUFFIX).toString();
-        return sha256(source);
+        return base64enc(sha256(source));
 
     }
 
@@ -31,5 +33,23 @@ public class SecurityUtils {
 
     public static String sha256(String source){
         return  DigestUtils.sha256Hex(source);
+    }
+
+
+    public static String base64enc(String plainText){
+        byte[] b = plainText.getBytes();
+        Base64 base64 = new Base64();
+        b = base64.encode(b);
+        String s = new String(b);
+        return s;
+    }
+
+
+    public static String base64dec(String encodeStr){
+        byte[] b = encodeStr.getBytes();
+        Base64 base64 = new Base64();
+        b = base64.decode(b);
+        String s = new String(b);
+        return s;
     }
 }

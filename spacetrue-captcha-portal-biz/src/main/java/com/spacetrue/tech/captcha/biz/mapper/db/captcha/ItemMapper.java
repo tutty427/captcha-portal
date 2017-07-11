@@ -2,6 +2,8 @@ package com.spacetrue.tech.captcha.biz.mapper.db.captcha;
 
 import com.spacetrue.tech.captcha.biz.model.Item;
 
+import java.util.List;
+
 public interface ItemMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ItemMapper {
     int updateByPrimaryKeySelective(Item record);
 
     int updateByPrimaryKey(Item record);
+
+    List<Item> selectAll();
 }

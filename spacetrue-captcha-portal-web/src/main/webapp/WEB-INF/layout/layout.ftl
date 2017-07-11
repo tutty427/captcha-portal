@@ -60,7 +60,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title><@tiles.insertAttribute name="title" /></title>
+    <title>Space True</title>
 </head>
 
 <@tiles.insertAttribute name="header" />

@@ -130,7 +130,7 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where user_account = #{userAccount,jdbcType=VARCHAR}
+    where  user_id = #{userId,jdbcType=VARCHAR}
   </select>
 
 
@@ -138,7 +138,7 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where  user_id = #{userId,jdbcType=VARCHAR}
+    where user_account = #{userAccount,jdbcType=VARCHAR}
   </select>
 
 
