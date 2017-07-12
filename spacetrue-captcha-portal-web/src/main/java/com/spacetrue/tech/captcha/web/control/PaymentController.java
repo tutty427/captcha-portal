@@ -4,21 +4,25 @@ package com.spacetrue.tech.captcha.web.control;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
 import com.spacetrue.tech.captcha.service.core.ItemService;
-import com.spacetrue.tech.captcha.service.core.PaymentService;
+import com.spacetrue.tech.captcha.service.core.OrderService;
+import com.spacetrue.tech.captcha.service.core.ThirdPaymentService;
 import com.spacetrue.tech.captcha.service.entity.ItemDTO;
-import com.spacetrue.tech.captcha.web.common.Constants;
+import com.spacetrue.tech.captcha.service.entity.OrderDTO;
 import com.spacetrue.tech.captcha.web.common.LayoutNames;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 /**
  * Created by Shaw on 2017/7/11.
@@ -29,10 +33,13 @@ public class PaymentController extends BaseController{
     private final static Logger LOG = Logger.getLogger(PaymentController.class);
 
     @Autowired
-    private PaymentService paymentService;
+    private ThirdPaymentService thirdPaymentService;
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private OrderService orderService;
 
     private final static String ITEM_TO_PAY = "itemToPay";
 
@@ -50,21 +57,35 @@ public class PaymentController extends BaseController{
             LOG.error("Item ["+itemId+"] doesn't existed with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
             return mav;
         }
-        mav.addObject(ITEM_TO_PAY, JSONObject.toJSONString(dto));
+        mav.addObject(ITEM_TO_PAY, StringEscapeUtils.escapeHtml(JSONObject.toJSONString(dto)));
         mav.setViewName(LayoutNames.thirdPartyPayPage.name());
+
+
+        //创建订单
+        OrderDTO order = new OrderDTO();
+        order.setItemId(Integer.valueOf(itemId));
+        order.setOrderPrice(dto.getItemPrice());
+        order.setPayWay(1);    //1 alipay  2 wechatpay 目前仅支持alipay
+        order.setStatus(0);     // 0 init 1 paid 2 cancel 3 refund
+        order.setUserId((String)request.getSession().getAttribute(USER_NAME_KEY));
+        orderService.createOrder(order);
+
         return mav;
     }
 
-    @RequestMapping(value="/payment/getPageContent",consumes = "application/json;charset=UTF-8",produces="text/html;charset=UTF-8")
-    public @ResponseBody String getPageContent(ModelMap model, HttpServletRequest request,String itemDTO) throws UnsupportedEncodingException {
+    @RequestMapping(value="/payment/getPageContent",produces="text/html;charset=UTF-8")
+    public @ResponseBody String getPageContent(ModelMap model, HttpServletRequest request,@RequestParam String itemDTO) throws UnsupportedEncodingException {
 
         String result = null;
         if(Strings.isNullOrEmpty(itemDTO)){
             LOG.error("itemDTO is empty with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
             return result;
         }
-        ItemDTO dto = (ItemDTO) JSONObject.parse(itemDTO);
-        result = paymentService.generateAlipayPageInfo(dto.getId(),"0.01",dto.getItemName(),dto.getItemDescribe());
+        ItemDTO dto = JSONObject.parseObject(StringEscapeUtils.unescapeHtml(itemDTO),ItemDTO.class);
+        result = thirdPaymentService.generateAlipayPageInfo(dto.getId(),"0.01",dto.getItemName(),dto.getItemDescribe());
         return result;
     }
+
+
+
 }

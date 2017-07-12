@@ -1,15 +1,11 @@
 package com.spacetrue.tech.captcha.service.core;
 
-import com.alipay.api.AlipayApiException;
-
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
  * Created by Shaw on 2017/7/12.
  */
-public interface PaymentService {
-
+public interface ThirdPaymentService {
 
     public boolean checkSign(Map<String,String[]> params);
 

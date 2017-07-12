@@ -135,7 +135,7 @@
                     <warName>${artifactId}-${version}</warName>
                     <webResources>
                         <resource>
-                            <directory>D:\workspace_opensource\captcha-portal\lib\</directory>
+                            <directory>D:\workspace\workspace_java\captcha-portal\lib\</directory>
                             <targetPath>WEB-INF/lib</targetPath>
                             <includes>
                                 <include>**/*.jar</include>

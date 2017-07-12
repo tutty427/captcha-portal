@@ -7,7 +7,7 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.spacetrue.tech.captcha.service.common.AlipayConfig;
-import com.spacetrue.tech.captcha.service.core.PaymentService;
+import com.spacetrue.tech.captcha.service.core.ThirdPaymentService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +20,9 @@ import java.util.Map;
  * Created by Shaw on 2017/7/12.
  */
 @Service
-public class PaymentServiceImpl implements PaymentService {
+public class ThirdPaymentServiceImpl implements ThirdPaymentService {
 
-    private final static Logger LOG = Logger.getLogger(PaymentServiceImpl.class);
+    private final static Logger LOG = Logger.getLogger(ThirdPaymentServiceImpl.class);
 
 
     @Override
@@ -78,7 +78,7 @@ public class PaymentServiceImpl implements PaymentService {
 
             alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
                     + "\"total_amount\":\""+ total_amount +"\","
-                    + "\"subject\":\""+ subject +"\","
+                    + "\"subject\":\""+ itemSubject +"\","
                     + "\"body\":\""+ body +"\","
                     + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
 

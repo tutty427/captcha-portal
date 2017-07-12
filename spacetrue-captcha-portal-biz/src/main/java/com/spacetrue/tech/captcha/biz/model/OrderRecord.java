@@ -13,6 +13,8 @@ public class OrderRecord {
 
     private Integer payWay;
 
+    private Integer status;
+
     private Date orderTime;
 
     private Date createdAt;
@@ -81,5 +83,13 @@ public class OrderRecord {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

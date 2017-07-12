@@ -7,12 +7,13 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="order_price" jdbcType="VARCHAR" property="orderPrice" />
     <result column="pay_way" jdbcType="INTEGER" property="payWay" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, item_id, user_id, order_price, pay_way, order_time, created_at, update_at
+    id, item_id, user_id, order_price, pay_way, status,order_time, created_at, update_at
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,10 +27,10 @@
   </delete>
   <insert id="insert" parameterType="com.spacetrue.tech.captcha.biz.model.OrderRecord">
     insert into order_record (id, item_id, user_id, 
-      order_price, pay_way, order_time, 
+      order_price, pay_way, status, order_time,
       created_at, update_at)
     values (#{id,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
-      #{orderPrice,jdbcType=VARCHAR}, #{payWay,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{orderPrice,jdbcType=VARCHAR}, #{payWay,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP},
       #{createdAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.spacetrue.tech.captcha.biz.model.OrderRecord">
@@ -49,6 +50,9 @@
       </if>
       <if test="payWay != null">
         pay_way,
+      </if>
+      <if test="status != null">
+        status,
       </if>
       <if test="orderTime != null">
         order_time,
@@ -76,6 +80,9 @@
       <if test="payWay != null">
         #{payWay,jdbcType=INTEGER},
       </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
       <if test="orderTime != null">
         #{orderTime,jdbcType=TIMESTAMP},
       </if>
@@ -100,7 +107,10 @@
         order_price = #{orderPrice,jdbcType=VARCHAR},
       </if>
       <if test="payWay != null">
-        pay_way = #{payWay,jdbcType=INTEGER},
+      pay_way = #{payWay,jdbcType=INTEGER},
+    </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="orderTime != null">
         order_time = #{orderTime,jdbcType=TIMESTAMP},
@@ -120,6 +130,7 @@
       user_id = #{userId,jdbcType=VARCHAR},
       order_price = #{orderPrice,jdbcType=VARCHAR},
       pay_way = #{payWay,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
       order_time = #{orderTime,jdbcType=TIMESTAMP},
       created_at = #{createdAt,jdbcType=TIMESTAMP},
       update_at = #{updateAt,jdbcType=TIMESTAMP}
