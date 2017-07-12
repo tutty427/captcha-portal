@@ -1,66 +1,70 @@
 package com.spacetrue.tech.captcha.web.control;
 
-import com.alipay.api.AlipayApiException;
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.spacetrue.tech.captcha.service.entity.ItemDTO;
-import com.spacetrue.tech.captcha.web.common.AlipayConfig;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.common.base.Strings;
+import com.spacetrue.tech.captcha.service.core.ItemService;
+import com.spacetrue.tech.captcha.service.core.PaymentService;
+import com.spacetrue.tech.captcha.service.entity.ItemDTO;
+import com.spacetrue.tech.captcha.web.common.Constants;
+import com.spacetrue.tech.captcha.web.common.LayoutNames;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 /**
  * Created by Shaw on 2017/7/11.
  */
 @Controller
-public class PaymentController {
+public class PaymentController extends BaseController{
 
+    private final static Logger LOG = Logger.getLogger(PaymentController.class);
 
-    //TODO
+    @Autowired
+    private PaymentService paymentService;
+
+    @Autowired
+    private ItemService itemService;
+
+    private final static String ITEM_TO_PAY = "itemToPay";
+
     @RequestMapping(value="/payment/toAlipay")
-    public String toAlipay() throws UnsupportedEncodingException {
+    public ModelAndView toAlipay(ModelMap model, HttpServletRequest request, String itemId) throws UnsupportedEncodingException {
 
-        //获得初始化的AlipayClient
-        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl
-                , AlipayConfig.app_id
-                , AlipayConfig.merchant_private_key
-                , "json"
-                , AlipayConfig.charset
-                , AlipayConfig.alipay_public_key
-                , AlipayConfig.sign_type);
-
-        //设置请求参数
-        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
-        alipayRequest.setReturnUrl(AlipayConfig.return_url);
-        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
-
-        //商户订单号，商户网站订单系统中唯一订单号，必填
-        String out_trade_no = new String("a".getBytes("ISO-8859-1"),"UTF-8");
-        //付款金额，必填
-        String total_amount = new String("a".getBytes("ISO-8859-1"),"UTF-8");
-        //订单名称，必填
-        String subject = new String("a".getBytes("ISO-8859-1"),"UTF-8");
-        //商品描述，可空
-        String body = new String("a".getBytes("ISO-8859-1"),"UTF-8");
-
-        alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
-                + "\"total_amount\":\""+ total_amount +"\","
-                + "\"subject\":\""+ subject +"\","
-                + "\"body\":\""+ body +"\","
-                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
-
-        //请求
-        try {
-            String result = alipayClient.pageExecute(alipayRequest).getBody();
-            return result;
-        } catch (AlipayApiException e) {
-            e.printStackTrace();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName(LayoutNames.userCenterLayoutPage.name());
+        if(Strings.isNullOrEmpty(itemId)){
+            LOG.error("ItemId is empty with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
+            return mav;
         }
+        ItemDTO dto = itemService.getItemById(Integer.valueOf(itemId));
+        if(dto == null){
+            LOG.error("Item ["+itemId+"] doesn't existed with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
+            return mav;
+        }
+        mav.addObject(ITEM_TO_PAY, JSONObject.toJSONString(dto));
+        mav.setViewName(LayoutNames.thirdPartyPayPage.name());
+        return mav;
+    }
 
-        return null;
+    @RequestMapping(value="/payment/getPageContent",consumes = "application/json;charset=UTF-8",produces="text/html;charset=UTF-8")
+    public @ResponseBody String getPageContent(ModelMap model, HttpServletRequest request,String itemDTO) throws UnsupportedEncodingException {
+
+        String result = null;
+        if(Strings.isNullOrEmpty(itemDTO)){
+            LOG.error("itemDTO is empty with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
+            return result;
+        }
+        ItemDTO dto = (ItemDTO) JSONObject.parse(itemDTO);
+        result = paymentService.generateAlipayPageInfo(dto.getId(),"0.01",dto.getItemName(),dto.getItemDescribe());
+        return result;
     }
 }

@@ -34,7 +34,13 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDTO getItemById(Integer id) {
-        return null;
+        ItemDTO dto = null;
+        Item item = itemMapper.selectByPrimaryKey(id);
+        if(item!= null){
+            dto = new ItemDTO();
+            BeanUtils.copyProperties(item,dto);
+        }
+        return dto;
     }
 
     @Override

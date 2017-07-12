@@ -11,7 +11,7 @@ public class Item {
 
     private Integer itemDiscount;
 
-    private Long itemPrice;
+    private String itemPrice;
 
     private Long timeLimit;
 
@@ -95,11 +95,11 @@ public class Item {
         this.updateAt = updateAt;
     }
 
-    public Long getItemPrice() {
+    public String getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(Long itemPrice) {
+    public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
     }
 }

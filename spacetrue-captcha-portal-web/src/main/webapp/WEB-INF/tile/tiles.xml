@@ -21,10 +21,13 @@
 		<put-attribute name="leftslide" value="/WEB-INF/view/portal/leftslide.ftl" type="freemarker" />
 		<put-attribute name="body" value="" />
 	</definition>
+
 	<definition name="userCenterLayoutPage" extends="userCenter">
 		<put-attribute name="body" expression="/WEB-INF/view/portal/${pageName}.ftl" type="freemarker" />
 	</definition>
 
+	<definition name="thirdPartyPayPage" template = "/WEB-INF/view/portal/thirdPartyPayPage.ftl" templateType="freemarker" >
+	</definition>
 
 
  </tiles-definitions>

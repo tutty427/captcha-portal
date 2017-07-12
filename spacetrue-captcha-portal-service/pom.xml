@@ -63,6 +63,15 @@
             <artifactId>commons-logging</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>D:/workspace_opensource/captcha-portal/lib/alipay-sdk-java.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
 </project>

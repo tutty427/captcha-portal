@@ -19,7 +19,7 @@ public class ItemDTO {
 
     private String itemAvailablePayway;
 
-    private Long itemPrice;
+    private String itemPrice;
 
 
     public Integer getId() {
@@ -78,11 +78,11 @@ public class ItemDTO {
         this.itemAvailablePayway = itemAvailablePayway;
     }
 
-    public Long getItemPrice() {
+    public String getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(Long itemPrice) {
+    public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
     }
 }

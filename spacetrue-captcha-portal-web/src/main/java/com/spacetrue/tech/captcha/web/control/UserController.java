@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 @Controller
-public class UserController {
+public class UserController extends BaseController{
 
     @Autowired
     private UserService userService;
@@ -28,7 +28,6 @@ public class UserController {
     @Autowired
     private ItemService itemService;
 
-    private final static String USER_NAME_KEY = "UserName";
 
 
 

@@ -18,13 +18,15 @@ $(document).ready(function() {
                     "<td  class='h100 bg' style='width: 300px;'><div class='fl pic18'><span class='shiba' id='pricepack0'>"+Info['itemPrice']+"</span><span class='shiba1'>RMB</span></div>"+
                     "<div class='fl mt13'>"+
                     // "<div class='fl wx'> <a href='javascript:void(0)' id='paypackwx0' name='paybuttonwx' attrid='b8b54512cf804ef0b0c55925f52c4c65'>Wechat</a> </div>"+
-                    "<div class='fl zfb'> <a href='javascript:void(0)' itemid='"+Info['id']+"' id='paypack0' name='paybutton' attrid='b8b54512cf804ef0b0c55925f52c4c65'>Alipay</a> </div>"+
+                    "<div class='fl zfb'> <a  href='/captcha/payment/toAlipay?itemId="+Info['id']+"' name='alipaybutton' >Alipay</a> </div>"+
                     "</div> </td> </tr><br>");
             })
             $("tbody").find("tr:first").after(items)
 
         }
     });
+
+
 
 
 });

@@ -4,7 +4,9 @@ public enum LayoutNames {
 
     captchaPortalPage,
     userCenterLayoutPage,
-    loginPage
+    loginPage,
+    thirdPartyPayPage
+
 
 
 }

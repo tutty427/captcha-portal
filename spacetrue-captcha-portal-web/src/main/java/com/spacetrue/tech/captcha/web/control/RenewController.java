@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Shaw on 2017/7/11.
  */
 @Controller
-public class RenewController {
+public class RenewController extends BaseController {
 
     @Autowired
     private ItemService itemService;
