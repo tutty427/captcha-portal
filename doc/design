@@ -22,6 +22,14 @@ update_at
 
 待定
 //payment
+
+id
+user_id
+item_id
+order_price
+trade_no
+created_at
+update_at
 ---------------
 
 item

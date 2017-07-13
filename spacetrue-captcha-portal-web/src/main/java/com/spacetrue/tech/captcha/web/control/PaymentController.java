@@ -3,6 +3,7 @@ package com.spacetrue.tech.captcha.web.control;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
+import com.spacetrue.tech.captcha.service.common.AlipayStatusEnum;
 import com.spacetrue.tech.captcha.service.core.ItemService;
 import com.spacetrue.tech.captcha.service.core.OrderService;
 import com.spacetrue.tech.captcha.service.core.ThirdPaymentService;
@@ -66,7 +67,7 @@ public class PaymentController extends BaseController{
         order.setItemId(Integer.valueOf(itemId));
         order.setOrderPrice(dto.getItemPrice());
         order.setPayWay(1);    //1 alipay  2 wechatpay 目前仅支持alipay
-        order.setStatus(0);     // 0 init 1 paid 2 cancel 3 refund
+        order.setStatus(AlipayStatusEnum.WAIT_BUYER_PAY.code());
         order.setUserId((String)request.getSession().getAttribute(USER_NAME_KEY));
         orderService.createOrder(order);
 

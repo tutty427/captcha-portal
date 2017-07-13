@@ -6,12 +6,16 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.spacetrue.tech.captcha.biz.mapper.db.captcha.PaymentRecordMapper;
+import com.spacetrue.tech.captcha.biz.model.PaymentRecord;
 import com.spacetrue.tech.captcha.service.common.AlipayConfig;
 import com.spacetrue.tech.captcha.service.core.ThirdPaymentService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -23,7 +27,8 @@ import java.util.Map;
 public class ThirdPaymentServiceImpl implements ThirdPaymentService {
 
     private final static Logger LOG = Logger.getLogger(ThirdPaymentServiceImpl.class);
-
+    @Autowired
+    private PaymentRecordMapper paymentRecordMapper;
 
     @Override
     public boolean checkSign(Map<String, String[]> requestParams)  {
@@ -100,7 +105,19 @@ public class ThirdPaymentServiceImpl implements ThirdPaymentService {
     }
 
     @Override
-    public boolean processNotifyCall() {
-        return false;
+    public boolean processNotifyCall(Integer orderId,String userId, Integer itemId,String outTradeId) {
+
+        PaymentRecord record = new PaymentRecord();
+        record.setItemId(itemId);
+        record.setOrderId(orderId);
+        record.setTradeNo(outTradeId);
+        record.setUserId(userId);
+
+        Date now = new Date();
+        record.setCreatedAt(now);
+        record.setUpdateAt(now);
+
+        paymentRecordMapper.insert(record);
+        return true;
     }
 }
