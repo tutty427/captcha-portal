@@ -5,10 +5,6 @@ import java.util.Date;
 public class PaymentRecord {
     private Integer id;
 
-    private String userId;
-
-    private Integer itemId;
-
     private Integer orderId;
 
     private String tradeNo;
@@ -23,22 +19,6 @@ public class PaymentRecord {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
-
-    public Integer getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
     }
 
     public Integer getOrderId() {

@@ -56,15 +56,15 @@
         </table>
 
 
-        <table tableName="api_request_hourly" domainObjectName="ApiRequestHourly"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
+        <!--<table tableName="api_request_hourly" domainObjectName="ApiRequestHourly"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--</table>-->
 
-        <table tableName="api_request_total" domainObjectName="ApiRequestTotal"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-        </table>
+        <!--<table tableName="api_request_total" domainObjectName="ApiRequestTotal"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+        <!--</table>-->
 
 
     </context>
