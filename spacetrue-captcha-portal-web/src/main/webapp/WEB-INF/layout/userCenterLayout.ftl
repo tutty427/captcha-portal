@@ -16,7 +16,7 @@
         <div class="logo fl"><img src="/images/logo_st.png" alt="SpaceTrue" style="width:50px; margin-left:20px;"></div>
         <div class="top-nav fr">
             <ul class="nav1 fl">
-                <li><a href="#" class="scroll">Home</a></li>
+                <li><a href="/captcha/index" class="scroll">Home</a></li>
                 <li><a href="#" class="scroll">Help</a></li>
                 <li><a href="#" class="scroll">Contact us</a></li>
             </ul>
@@ -25,16 +25,9 @@
     </div>
     <@tiles.insertAttribute name="leftslide" />
     <div class="right fl">
-        <div class="righttop">
-            <div class="fl w700">
-                <div class="fl"><i><img src="/images/vip.png" class="vm" style="width:20px;margin-left:10px; margin-right:5px;"></i>User:<span class="userspan" id="userids">${Session.UserName}</span></div>
-                <div class="fl timer"><i><img src="/images/remain.png" class="vm" style="width: 20px;margin-left:10px; margin-right: 5px;"></i>Time Remained:<span class="userspan" id="usertime">--</span></div>
-                <div class="fl timer"><i><img src="/images/remain.png" class="vm" style="width: 20px;margin-left:10px; margin-right: 5px;"></i>Stream Remained:<span class="userspan" id="usertime">3000</span></div>
-                <div class="clear"></div>
-            </div>
-        <@tiles.insertAttribute name="body" />
-            <div class="clear"></div>
-        </div>
+    <@tiles.insertAttribute name="bodytop" />
+    <@tiles.insertAttribute name="body" />
+
 
     </div>
     <div class="clear"></div>

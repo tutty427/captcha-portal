@@ -125,4 +125,14 @@
       total_count = #{totalCount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectByAppId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from api_request_total
+    where app_id = #{appId,jdbcType=VARCHAR}
+  </select>
+
+
 </mapper>

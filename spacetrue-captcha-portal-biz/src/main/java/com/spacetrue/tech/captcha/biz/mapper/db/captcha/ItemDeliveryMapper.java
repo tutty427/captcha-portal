@@ -14,4 +14,8 @@ public interface ItemDeliveryMapper {
     int updateByPrimaryKeySelective(ItemDelivery record);
 
     int updateByPrimaryKey(ItemDelivery record);
+
+    ItemDelivery selectByByUserIdAndItemId(String id,Integer itemId);
+
+    ItemDelivery selectByByUserId(String id);
 }

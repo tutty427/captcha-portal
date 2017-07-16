@@ -14,14 +14,12 @@ public class SecurityUtils {
     private final static String SECURITY_SUFFIX = "true";
 
 
-    public static String generateAccessId(String account,long createDate){
+    public static int generateAccessId(String account){
 
-        if(Strings.isNullOrEmpty(account) || createDate == 0){
-            return null;
+        if(Strings.isNullOrEmpty(account) ){
+            return 0;
         }
-
-        String source = new StringBuilder(SECURITY_PREFIX).append(account).append(createDate).append(SECURITY_SUFFIX).toString();
-        return base64enc(sha256(source));
+        return hash(account);
 
     }
 
@@ -54,19 +52,24 @@ public class SecurityUtils {
     }
 
 
+   /**//**
+     * 改进的32位FNV算法1
+     * @param data 字符串
+     * @return int值
+     */
+    public static int hash(String data)
+    {
+        final int p = 16777619;
+        int hash = (int)2166136261L;
+        for(int i=0;i<data.length();i++)
+            hash = (hash ^ data.charAt(i)) * p;
+        hash += hash << 13;
+        hash ^= hash >> 7;
+        hash += hash << 3;
+        hash ^= hash >> 17;
+        hash += hash << 5;
 
-    public static String FNVHash(String encodeStr){
-//        final int p = 16777619;
-//        int hash = (int)2166136261L;
-//        for(int i=0;i
-//        hash = (hash ^ data.charAt(i)) * p;
-//        hash += hash << 13;
-//        hash ^= hash >> 7;
-//        hash += hash << 3;
-//        hash ^= hash >> 17;
-//        hash += hash << 5;
-//        return hash;
-
-        return null;
+        hash = Math.abs(hash);
+        return hash;
     }
 }

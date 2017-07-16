@@ -105,13 +105,11 @@ public class ThirdPaymentServiceImpl implements ThirdPaymentService {
     }
 
     @Override
-    public boolean processNotifyCall(Integer orderId,String userId, Integer itemId,String outTradeId) {
+    public boolean processNotifyCall(Integer orderId,String outTradeId) {
 
         PaymentRecord record = new PaymentRecord();
-        record.setItemId(itemId);
         record.setOrderId(orderId);
         record.setTradeNo(outTradeId);
-        record.setUserId(userId);
 
         Date now = new Date();
         record.setCreatedAt(now);

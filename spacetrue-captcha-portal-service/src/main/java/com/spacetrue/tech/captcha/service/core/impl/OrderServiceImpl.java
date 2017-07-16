@@ -28,7 +28,8 @@ public class OrderServiceImpl implements OrderService {
         order.setCreatedAt(now);
         order.setOrderTime(now);
 
-        orderRecordMapper.insert(order);
+        int orderId = orderRecordMapper.insert(order);
+        dto.setId(orderId);
         return dto;
     }
 

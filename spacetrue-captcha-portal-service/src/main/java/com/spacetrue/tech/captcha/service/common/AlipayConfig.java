@@ -12,7 +12,7 @@ public class AlipayConfig {
 
     final public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsMx8hhx0qeseKBgWXJuRv+gJNTUlNzUS8LZaE0LhG1bY8YWFvkOyvSVUy/SzZ1lcAQo3Ppdi++QYmBd3Jf/+rfW3dKHXMy39lEFM4woeQQ+1z+vY87UfASvs26LkCsS8UzVshsQnTXYvWvTOVN0noFDAA3uRBTgnmluO3NJTJ4yWMziMXutljuHumSJvo1NlvsTS6kD1hHGCuZZmvcjREi37MPc/m+xMGFQLo0iWgwA/0ffriTQv9jRpsT46T5PPoib9sHvHQdLcmIaX32JzhGlZeMMiBd8ORv5zrRZCLVsgB0aG0Axx35fXhDpO5tVh+ejQuZba5jeg1GV7ySWlJwIDAQAB";
 
-    final public static String notify_url = "http://工程公网访问地址/alipay.trade.page.pay-JAVA-UTF-8/notify_url.jsp";
+    final public static String notify_url = "http://service.spacetrue.com/captcha/api/alipayNotifyCallBack";
 
     final public static String return_url = "http://工程公网访问地址/alipay.trade.page.pay-JAVA-UTF-8/return_url.jsp";
 

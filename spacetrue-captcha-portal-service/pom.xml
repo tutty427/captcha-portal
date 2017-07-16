@@ -69,7 +69,7 @@
             <artifactId>alipay-sdk-java</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>D:/workspace/workspace_java/captcha-portal/lib/alipay-sdk-java.jar</systemPath>
+            <systemPath>D:/workspace_opensource/captcha-portal/lib/alipay-sdk-java.jar</systemPath>
         </dependency>
 
     </dependencies>

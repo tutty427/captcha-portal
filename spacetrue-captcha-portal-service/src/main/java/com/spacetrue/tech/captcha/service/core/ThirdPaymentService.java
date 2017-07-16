@@ -13,5 +13,5 @@ public interface ThirdPaymentService {
 
     public boolean processReturnCall();
 
-    public boolean processNotifyCall(Integer orderId, String userId, Integer itemId,String outTradeId );
+    public boolean processNotifyCall(Integer orderId, String outTradeId );
 }

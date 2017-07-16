@@ -151,4 +151,22 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
+  <select id="selectByByUserIdAndItemId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item_delivery
+    where user_id = #{userId,jdbcType=VARCHAR} and item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByByUserId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item_delivery
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+
+
+
+
 </mapper>

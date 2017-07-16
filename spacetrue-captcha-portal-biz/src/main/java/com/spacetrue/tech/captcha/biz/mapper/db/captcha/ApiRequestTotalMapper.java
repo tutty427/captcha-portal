@@ -14,4 +14,6 @@ public interface ApiRequestTotalMapper {
     int updateByPrimaryKeySelective(ApiRequestTotal record);
 
     int updateByPrimaryKey(ApiRequestTotal record);
+
+    ApiRequestTotal selectByAppId(String id);
 }

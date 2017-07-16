@@ -44,12 +44,12 @@ public class UserServiceImpl implements UserService {
         user.setUpdateAt(now);
         user.setLastLoginAt(now);
 
-        String accessId = SecurityUtils.generateAccessId(userAccount,now.getTime());
-        if(Strings.isNullOrEmpty(accessId)){
+        int accessId = SecurityUtils.generateAccessId(userAccount);
+        if(accessId == 0){
             LOG.warn("Fail to generate accessId");
             return dto;
         }
-        user.setAccessId(accessId);
+        user.setAccessId(String.valueOf(accessId));
         userMapper.insert(user);
         dto = new UserDTO();
         BeanUtils.copyProperties(user,dto);

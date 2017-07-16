@@ -25,7 +25,7 @@
     delete from order_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.spacetrue.tech.captcha.biz.model.OrderRecord">
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id" parameterType="com.spacetrue.tech.captcha.biz.model.OrderRecord">
     insert into order_record (id, item_id, user_id, 
       order_price, pay_way, status, order_time,
       created_at, update_at)

@@ -9,5 +9,7 @@ public interface ItemDeliveryService {
 
     Map<String,Long> countBalance(String userId);
 
+    void deliveryItemByOrder(Integer orderId);
+
 
 }

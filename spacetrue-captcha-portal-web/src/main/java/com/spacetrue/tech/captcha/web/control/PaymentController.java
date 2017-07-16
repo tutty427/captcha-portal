@@ -58,8 +58,6 @@ public class PaymentController extends BaseController{
             LOG.error("Item ["+itemId+"] doesn't existed with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
             return mav;
         }
-        mav.addObject(ITEM_TO_PAY, StringEscapeUtils.escapeHtml(JSONObject.toJSONString(dto)));
-        mav.setViewName(LayoutNames.thirdPartyPayPage.name());
 
 
         //创建订单
@@ -70,6 +68,12 @@ public class PaymentController extends BaseController{
         order.setStatus(AlipayStatusEnum.WAIT_BUYER_PAY.code());
         order.setUserId((String)request.getSession().getAttribute(USER_NAME_KEY));
         orderService.createOrder(order);
+
+
+        mav.addObject(ITEM_TO_PAY, StringEscapeUtils.escapeHtml(JSONObject.toJSONString(order)));
+        mav.setViewName(LayoutNames.thirdPartyPayPage.name());
+
+
 
         return mav;
     }
@@ -82,8 +86,9 @@ public class PaymentController extends BaseController{
             LOG.error("itemDTO is empty with userId => "+request.getSession().getAttribute(USER_NAME_KEY));
             return result;
         }
-        ItemDTO dto = JSONObject.parseObject(StringEscapeUtils.unescapeHtml(itemDTO),ItemDTO.class);
-        result = thirdPaymentService.generateAlipayPageInfo(dto.getId(),"0.01",dto.getItemName(),dto.getItemDescribe());
+        OrderDTO dto = JSONObject.parseObject(StringEscapeUtils.unescapeHtml(itemDTO),OrderDTO.class);
+        ItemDTO item = itemService.getItemById(dto.getItemId());
+        result = thirdPaymentService.generateAlipayPageInfo(dto.getId(),"0.01",item.getItemName(),item.getItemDescribe());
         return result;
     }
 

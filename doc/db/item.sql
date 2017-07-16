@@ -7,8 +7,8 @@ CREATE TABLE `captcha_portal`.`item` (
   `time_limit` BIGINT NOT NULL DEFAULT -1,
   `stream_limit` BIGINT NOT NULL DEFAULT -1,
   `item_available_payway` VARCHAR(45) NULL,
-  `created_at` DATETIME NULL DEFAULT now(),
-  `update_at` DATETIME NULL DEFAULT now(),
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `IDX_CREATED_AT` (`created_at` ASC),
   INDEX `IDX_UPDATED_AT` (`update_at` ASC));

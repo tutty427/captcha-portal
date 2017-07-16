@@ -6,4 +6,6 @@ package com.spacetrue.tech.captcha.web.control;
 public abstract class BaseController {
 
     protected final static String USER_NAME_KEY = "UserName";
+
+    protected final static String USER_ID_KEY = "UserId";
 }
